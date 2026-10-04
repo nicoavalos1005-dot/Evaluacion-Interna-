@@ -1,0 +1,22 @@
+from dhooks import Webhook, Embed
+
+hook = Webhook('https://discord.com/api/webhooks/1555732887809040394/xKw8Ji_OKOjR8nJsjVJOMxwu_MCqrzoQlbmNB_OTS8FtvUiJsfYnoH5v2YLJAKvTowdR')
+
+embed = Embed(
+    description='This is the **description** of the embed! :smiley:',
+    color=0x5CDBF0,
+    timestamp='now'  
+    )
+
+image1 = 'https://imgur.com/yJvwHvB.png'
+image2 = 'https://imgur.com/lG4zqYT.png'
+
+embed.set_author(name="diddy", icon_url= image1)
+embed.add_field(name="Valor promedio", value="231 :money_with_wings:")
+embed.add_field(name="Valor conseguido", value="220 :money_with_wings:")
+embed.set_footer(text="Anda a comprar esa skin rapido!!", icon_url= image2)
+
+embed.set_thumbnail(image1)
+embed.set_image(image2)
+
+hook.send(embed=embed)
