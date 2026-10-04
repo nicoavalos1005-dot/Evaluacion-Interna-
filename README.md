@@ -15,4 +15,6 @@ El obejtivo de este programa es crear una solucion eficaz para el monitoreo del 
 
 -Se apagaran las notificaciones de cada 15 minutos durante la noche, las demas no de 10h00pm hasta 6h00am
 
+-Despues de 3 dias de uso se reportara en un exel mandado al discord  en un grafico los precios que hubieron en el dia
+
 (se intentara conseguir una rasperry para poder ejecutar el programa 24/7)
