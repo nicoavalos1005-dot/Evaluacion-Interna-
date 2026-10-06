@@ -1,0 +1,27 @@
+valor1=str(100)+ ":money_with_wings:"   #estos datos son los que se tranformaran una vez se los pida a sql, es una manera de adaptarlo al codigo de dhooks
+valor2=str(90)+ ":money_with_wings:"
+
+from dhooks import Webhook, Embed\
+
+hook = Webhook('https://discord.com/api/webhooks/1555732887809040394/xKw8Ji_OKOjR8nJsjVJOMxwu_MCqrzoQlbmNB_OTS8FtvUiJsfYnoH5v2YLJAKvTowdR')
+
+embed = Embed(
+    description='!Hemos encontrado el precio que deseabas! :face_holding_back_tears:',
+    color=0xAB1D99, #el 0x solo sirve para inciar la configuracion, el codigo que sigue despues es un codigo de color HTML, LO QUE HACE INCLUSO MAS PERSONABLIZABLE EL PROYECTO!
+    timestamp='now'  
+    )
+
+image1 = 'https://imgur.com/yJvwHvB.png'
+image2 = 'https://imgur.com/lG4zqYT.png'
+
+#debido a la falta de documentacion del proyecto dhooks se a ido poco a poco investigando las funciones, se a descubierto que para poder poner cualquier tipo de dato int o variables solo tiene que ir el nombre de la variable, pero para poner un emoji y el int se tiene que transformar a str el valor que sql da
+#al descubrir el intercambio de datos en el banner se puede sensillamente personalizar todo desde python, el nombre del bot en los mensajes todooo!!
+embed.set_author(name="Botskison", icon_url= image1)
+embed.add_field(name="Valor promedio", value= valor1)
+embed.add_field(name="Valor conseguido", value=valor2 )
+embed.set_footer(text="Anda a comprar esa skin rapido!!", icon_url= image2)
+
+embed.set_thumbnail(image1)
+embed.set_image(image2)
+
+hook.send(embed=embed)
