@@ -1,0 +1,37 @@
+import sqlite3
+
+conexion = sqlite3.connect("Cuentas.db")
+conexion.execute("PRAGMA foreign_keys = ON")
+cursor = conexion.cursor()
+
+cursor.executescript("""
+CREATE TABLE IF NOT EXISTS Usuarios (
+    id_Usuarios INTEGER PRIMARY KEY,
+    cuenta TEXT NOT NULL,
+    contraseña TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Credencial (
+    id_credencial INTEGER PRIMARY KEY,
+    id_Usuarios INTEGER NOT NULL UNIQUE,
+    codigo_credencial TEXT NOT NULL UNIQUE,
+    fecha_emision TEXT NOT NULL,
+    FOREIGN KEY (id_Usuarios)
+        REFERENCES Usuarios(id_Usuarios)
+);
+CREATE TABLE IF NOT EXISTS Skin (
+    id_Skin INTEGER PRIMARY KEY,
+    nombre_Skin TEXT NOT NULL,
+    condicion TEXT NOT NULL
+);
+
+""")
+
+conexion.commit()
+cursor.execute("""
+SELECT name FROM sqlite_master
+WHERE type = 'table' ORDER BY name
+""")
+for tabla in cursor.fetchall():
+    print(tabla[0])
+conexion.close()
