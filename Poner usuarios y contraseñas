@@ -1,0 +1,21 @@
+import sqlite3
+conexion = sqlite3.connect("Cuentas.db")
+conexion.execute("PRAGMA foreign_keys = ON")
+cursor = conexion.cursor()
+
+Usuarios = [
+    (1, 'its_nick4', 'Toby13213'),
+    (2, 'albertx3', 'albertogilberto1'),
+    (3, 'sebastsebas', 'crismjt1'),
+    (4, 'dreacueva', 'rex133')
+]
+cursor.executemany("""
+INSERT OR IGNORE INTO Usuarios VALUES (?, ?, ?)
+""", Usuarios)
+conexion.commit()
+
+cursor.execute("SELECT * FROM Usuarios")
+for Usuarios in cursor.fetchall():
+    print(Usuarios)
+
+conexion.close()
