@@ -1,0 +1,30 @@
+import requests
+skin="AK-47 | Redline (Field-Tested)"
+
+url = "https://api.openskin.dev/v1/prices"
+
+params = {"item": skin}
+
+try:
+    response = requests.get(url, params=params, timeout=15)
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    print(f"Artículo:{skin}")
+    print("Precios encontrados:")
+
+    for mercado, info in data.get("prices", {}).items():
+        if isinstance(info, dict):
+            precio = info.get("ask")
+            moneda = info.get("currency", "USD")
+
+            if precio is not None:
+                print(f"{mercado}: {precio} {moneda}")
+
+    print("\nPrecio de venta más bajo:")
+    print(data.get("lowest_ask"))
+
+except requests.RequestException as error:
+    print("Error al consultar la API:", error)
